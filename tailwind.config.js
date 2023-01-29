@@ -10,6 +10,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        dark: {
+          1: '#31262E',
+          2: '#30252E',
+        },
+        highlight: '#F05F4E',
+        primary: '#F5BF59',
+        secondary: '#CF7C3A',
         vercel: {
           blue: '#0070F3',
           cyan: '#50E3C2',
