@@ -1,11 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './page/**/*.{js,ts,jsx,tsx}', './ui/**/*.{js,ts,jsx,tsx}'],
+  daisyui: {
+    themes: [
+      {
+        website: {
+          '--rounded-btn': '9999px',
+          accent: '#F05F4E',
+          'base-100': '#faf7f5',
+          'base-200': '#efeae6',
+          'base-300': '#e7e2df',
+          'base-content': '#efeae6',
+          error: '#F05F4E',
+          fontFamily: 'Inter',
+          neutral: '#31262E',
+          primary: '#F5BF59',
+          secondary: '#CF7C3A',
+        },
+      },
+      'dark',
+    ],
+  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
+    require('daisyui'),
   ],
   theme: {
     extend: {

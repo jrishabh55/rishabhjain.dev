@@ -1,41 +1,20 @@
 import '../styles/globals.scss';
 
-import Navbar from '@/components/Navbar';
-
-const navItems = [
-  {
-    href: '/',
-    name: 'Home',
-  },
-  {
-    href: '/#skills',
-    name: 'Skills',
-  },
-  {
-    href: '/',
-    name: 'Home 2',
-  },
-  {
-    href: '/',
-    name: 'Home 3',
-  },
-  {
-    href: '/',
-    name: 'Home 4',
-  },
-];
+import MainFooter from '@/components/MainFooter';
+import MainHeader from '@/components/MainHeader';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <title>Head</title>
+        <title>Rishabh Jain | rishabhjain.dev</title>
       </head>
-      <body className="min-h-screen bg-gradient-to-tr from-primary via-primary to-secondary bg-no-repeat">
-        <main className="container mx-auto">
-          <Navbar items={navItems} />
-          {children}
-        </main>
+      <body className="bg-gradient min-h-screen bg-no-repeat" data-theme="data-theme">
+        <div className="main-bg space-y-6">
+          <MainHeader />
+          <main className="container mx-auto">{children}</main>
+          <MainFooter />
+        </div>
       </body>
     </html>
   );

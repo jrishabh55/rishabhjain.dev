@@ -43,10 +43,10 @@ export interface StepsProps {
   steps: Pick<StepProps, 'image' | 'label'>[];
 }
 
-const Steps: FC<StepsProps> = ({ active = 1, steps = [] }) => {
+const Steps: FC<StepsProps> = ({ steps = [], active = steps.length }) => {
   if (steps.length === 0) return null;
   return (
-    <div className="flex h-7 items-center">
+    <div className="flex h-10 items-center">
       <div className="flex h-1 w-full items-center justify-between bg-gray-700">
         {steps.map((step, i) => (
           <Step key={i} active={i + 1 === active} completed={i < active} index={i} {...step} />

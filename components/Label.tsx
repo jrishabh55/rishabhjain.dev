@@ -10,22 +10,24 @@ export interface LabelProps {
 
 const Label: FCC<LabelProps> = ({ children, className, reverse, type }) => {
   return (
-    <p
-      className={clsx('inline-flex items-center justify-center', {
+    <li
+      className={clsx('inline-flex items-center', {
         'flex-row': !reverse,
         'flex-row-reverse': reverse,
       })}>
       {type && (
         <span
-          className={clsx('mx-3 h-2 w-2 rounded-full', {
+          className={clsx(' h-2 w-2 rounded-full', {
             'bg-highlight': type === 'highlight',
             'bg-primary': type === 'primary',
             'bg-secondary': type === 'secondary',
+            'ml-3': reverse,
+            'mr-3': !reverse,
           })}
         />
       )}
       <span className={className}>{children}</span>
-    </p>
+    </li>
   );
 };
 

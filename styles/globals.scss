@@ -4,15 +4,26 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --main-bg-pattern: url("/pattern.svg");
+}
+
 @layer base {
   html {
     @apply text-gray-200;
   }
+
+  body > .main-bg {
+    background-image: var(--main-bg-pattern);
+  }
+
+  .bg-gradient {
+    @apply bg-gradient-to-tr from-primary via-primary to-secondary;
+  }
 }
 
-
-.top-nav:after {
-  content: '  ';
+nav.top-nav:after {
+  content: ' ';
   background: url('/download.svg') no-repeat right;
   background-size: contain;
   top: 0;
@@ -20,5 +31,6 @@
   width: 100%;
   height: 100vh;
   position: absolute;
-  z-index: -1;
+  z-index: 0;
+  display: inline-block;
 }

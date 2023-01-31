@@ -1,57 +1,60 @@
 import Image from 'next/image';
 
-import Label from '@/components/Label';
-import Card from '@/components/lib/Card';
-import Steps from '@/components/lib/Steps';
+import SkillChart from '@/components/SkillChart';
+import SkillsCard from '@/components/SkillsCard';
+import TestimonialCard from '@/components/TestimonialCard';
 
 const HomePage = () => {
   return (
-    <div className="flex flex-row gap-5">
-      <Card className="flex-grow">this is card</Card>
-      <Card className="w-full max-w-xl">
-        <header className="flex justify-between">
-          <Label type="primary">Engineer</Label>
-          <Label reverse type="primary">
-            Entrepreneur
-          </Label>
-        </header>
-        <main className="p-7">
-          <div className="grid grid-cols-2">
-            <div>
-              <h1 className="text-4xl font-bold">Rishabh Jain</h1>
-              <p className="mt-4 text-xs text-gray-500">This is a caption. This is a caption. This is a caption.</p>
-            </div>
-            <div>
-              <div className="mx-auto w-28">
-                <Image alt="Rishabh Jain" height={100} src="https://codeation.io/images/team_avatar.svg" width={100} />
-              </div>
+    <div className="space-y-36">
+      <section className="flex flex-row gap-5">
+        <div className="flex flex-grow items-center justify-center">
+          <div className="avatar">
+            <div className="w-[500px] rounded-xl bg-secondary/40 p-7">
+              <Image
+                alt={'Rishabh'}
+                className="-scale-x-100 rounded-md object-cover"
+                height={900}
+                src="/rishabh-cartoonize.png"
+                width={700}
+              />
             </div>
           </div>
-          <div className="mt-5">
-            <p className="mb-5 text-xs text-gray-200">Career Timeline</p>
-            <Steps
-              active={2}
-              steps={[
-                {
-                  image: 'https://codeation.io/images/team_avatar.svg',
-                },
-                {
-                  image: 'https://codeation.io/images/team_avatar.svg',
-                },
-                {
-                  image: 'https://codeation.io/images/team_avatar.svg',
-                },
-                {
-                  image: 'https://codeation.io/images/team_avatar.svg',
-                },
-                {
-                  image: 'https://codeation.io/images/team_avatar.svg',
-                },
-              ]}
-            />
-          </div>
-        </main>
-      </Card>
+        </div>
+        <SkillsCard />
+      </section>
+      <section className="flex justify-center gap-10">
+        <TestimonialCard
+          className="flex-grow"
+          company="Deuglo"
+          companyIcon="https://www.deuglo.com/wp-content/uploads/2018/07/rect28.png"
+          name="Sujit Thakur"
+          position="CEO"
+          testimonial={
+            <>
+              We connected with <u>Rishabh</u> after a long time of searching for a company&lsquo;s can help us with a customized dashboard
+              solution. We are an education company and wanted a customized dashboard solution to set up the complete process and make the
+              in-house communication and operational work easy. They work very professionally and within deadlines.
+            </>
+          }
+        />
+        <TestimonialCard
+          className="flex-grow"
+          company="VK Soft Solutions"
+          companyIcon="https://www.vksoftsolutions.com/wp-content/uploads/2022/02/cropped-VK-Soft-Solutions-01-32x32.png"
+          name="Varun Kumar"
+          position="CEO & Founder"
+          testimonial={
+            <>
+              I got a reference for <u>Rishabh</u> from one of my clients. He is a super amazing guy and knows what he is working at. We had
+              various meetings and detailed calls on the app that I wanted them to make. The complete team is very apt in their work. The
+              feedback was always taken on board and implemented without any hesitation.
+            </>
+          }
+        />
+
+        <SkillChart />
+      </section>
     </div>
   );
 };

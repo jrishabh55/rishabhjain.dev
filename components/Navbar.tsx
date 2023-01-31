@@ -9,7 +9,7 @@ export interface NavItem {
 
 const NavItem: FCC<NavItem> = ({ href, name }) => {
   return (
-    <Link className="border-b-2 border-b-transparent uppercase text-white hover:border-b-white" href={href}>
+    <Link className="z-10 border-b-2 border-b-transparent py-1 uppercase text-white hover:border-b-white" href={href}>
       {name}
     </Link>
   );
@@ -22,7 +22,7 @@ export interface NavbarProps {
 
 const Navbar: FCC<NavbarProps> = ({ items = [] }) => {
   return (
-    <nav className="top-nav mr-24 flex justify-end space-x-10 py-8 text-lg">
+    <nav className="top-nav flex justify-end space-x-10 py-4 text-lg">
       {items.map(({ href, name }) => (
         <NavItem key={name} href={href} name={name} />
       ))}
