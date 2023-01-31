@@ -6,7 +6,7 @@ import TestimonialCard from '@/components/TestimonialCard';
 
 const HomePage = () => {
   return (
-    <div className="space-y-36">
+    <div className="space-y-20">
       <section className="flex flex-row gap-5">
         <div className="flex flex-grow items-center justify-center">
           <div className="avatar">
