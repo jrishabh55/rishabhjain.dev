@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sheet Changes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100vw;
+        background: #e6e7e8;
+        padding: 20px;
+        margin: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <input accept="application/vnd.sealed.xls" type="file" id="xls-file" />
+    <section id="result"></section>
+  </body>
+  <script>
+    const neededKeys = [
+      "Farmer_Name",
+      "Aadhar_Number",
+      "DOB(DD/MM/YYYY)",
+      "Gender",
+      "Mobile_no",
+      "Farmer_Type",
+      "Relative_Type",
+      "Relative_Name",
+      "Village_Name_Residential",
+      "Account_Number",
+      "Loan_Sanctio_Or_Renew_date  (DD/MM/YYYY)",
+      "Loan_Sanctio_Or_Renew_amount(IN Rs)",
+      "Block_Name_Residential",
+      "Survey_no",
+      "Subsurvey_no",
+      "Area (Hect)",
+    ];
+
+    const rowToTable = (rows) => {
+      const table = document.createElement("table");
+
+      const thead = document.createElement("thead");
+      const tbody = document.createElement("tbody");
+      const header = ["S.No", ...neededKeys];
+
+      header.forEach((key) => {
+        const th = document.createElement("th");
+        th.innerHTML = key;
+        thead.appendChild(th);
+      });
+
+      table.appendChild(thead);
+      table.appendChild(tbody);
+
+      rows.forEach((row, i) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${i + 1}</td>`;
+        neededKeys.forEach((key) => {
+          const td = document.createElement("td");
+          if (!row[key]) {
+            td.style.background = "rgba(255, 0, 0, 0.3)";
+          }
+          td.innerHTML = row[key] ?? "";
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      return table;
+    };
+    const input = document.getElementById("xls-file");
+    const result = document.getElementById("result");
+
+    input.addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, {
+          type: "binary",
+        });
+        result.innerHTML = "";
+        workbook.SheetNames.forEach((sheetName) => {
+          const XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+
+          result.append(rowToTable(XL_row_object));
+        });
+      };
+      reader.onerror = function (ex) {
+        result.innerHTML = "Some error occured while reading the file";
+      };
+      reader.readAsBinaryString(file);
+    });
+  </script>
+</html>
